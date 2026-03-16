@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liwei Chen | Personal Portfolio</title>
+  <meta name="description" content="Portfolio of Liwei Chen, Associate Professor at the University of Cincinnati. Research on digital technologies, human interaction, and decision-making." />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --accent: #1d4ed8;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: rgba(148, 163, 184, 0.24);
+      --nav-height: 70px;
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e5e7eb 0, #f5f5f7 40%, #e5e7eb 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .page-shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+    }
+
+    /* Glass panel wrapper for subtle framing on large screens */
+    .frame {
+      margin-top: calc(var(--nav-height) + 1.5rem);
+      border-radius: 28px;
+      padding: 1.5rem 1.5rem 2.5rem;
+      background: radial-gradient(circle at top left, rgba(191, 219, 254, 0.5), transparent 60%),
+        linear-gradient(to bottom right, #ffffff, #f9fafb);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(191, 219, 254, 0.5) 0, transparent 58%),
+        radial-gradient(circle at 100% 100%, rgba(209, 213, 219, 0.5) 0, transparent 60%);
+      opacity: 0.6;
+      mix-blend-mode: normal;
+      pointer-events: none;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    section:last-of-type {
+      margin-bottom: 1rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(148, 163, 184, 0.65), transparent);
+      margin-left: 0.5rem;
+    }
+
+    /* Sticky Nav */
+    .nav-shell {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(249, 250, 251, 0.98), rgba(249, 250, 251, 0.92));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.24);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.3rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-height);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .nav-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #bfdbfe);
+      position: relative;
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.7), 0 8px 18px rgba(15, 23, 42, 0.12);
+    }
+
+    .nav-mark::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: inherit;
+      border: 1px solid rgba(37, 99, 235, 0.8);
+    }
+
+    .nav-name {
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      color: var(--text-muted);
+      transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4px;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.8));
+      transform: translateX(-50%);
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(229, 231, 235, 0.7);
+      transform: translateY(-1px);
+    }
+
+    .nav-link:hover::after {
+      width: 70%;
+    }
+
+    .nav-link.accent {
+      background: linear-gradient(120deg, #1d4ed8, #2563eb);
+      color: #f9fafb;
+      font-weight: 600;
+      box-shadow: 0 10px 26px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-link.accent:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 16px 36px rgba(37, 99, 235, 0.35);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+      color: var(--text-main);
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.25fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding: 1.5rem 1.5rem 2rem;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(219, 234, 254, 0.8), #ffffff 52%, #f9fafb 100%);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(191, 219, 254, 0.7) 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(219, 234, 254, 0.7) 0, transparent 50%);
+      opacity: 0.8;
+      mix-blend-mode: normal;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.45);
+      margin-bottom: 1.1rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .hero-kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 40% 30%, #eff6ff, #1d4ed8);
+      box-shadow: 0 0 14px rgba(37, 99, 235, 0.55);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title span {
+      display: inline-block;
+      background: linear-gradient(130deg, #1d4ed8, #2563eb, #60a5fa);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-meta-pill {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(255, 255, 255, 0.95);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .hero-meta-pill span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 40% 30%, #dcfce7, #22c55e);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #f9fafb;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 22px 50px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-ghost {
+      background: #ffffff;
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.8);
+    }
+
+    .btn-ghost:hover {
+      background: #f3f4f6;
+      border-color: rgba(107, 114, 128, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      font-size: 1rem;
+    }
+
+    .hero-orbit {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-orbit-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .hero-orbit-bullets {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.55rem;
+    }
+
+    .hero-photo-card {
+      width: min(280px, 100%);
+      border-radius: 26px;
+      padding: 0.5rem;
+      background: radial-gradient(circle at top left, #ffffff, #eff6ff);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo-inner {
+      border-radius: 20px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #e5e7eb, #9ca3af);
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-photo-tag {
+      position: absolute;
+      bottom: 0.7rem;
+      left: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--text-muted);
+    }
+
+    .hero-photo-tag strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .hero-orbit-ring {
+      position: absolute;
+      inset: -8%;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 2.2rem;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+    }
+
+    .about-text p + p {
+      margin-top: 0.7rem;
+    }
+
+    .about-actions {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .about-highlights {
+      margin-top: 1.25rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+    }
+
+    .about-highlight {
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.9rem;
+      background: #f9fafb;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .about-highlight strong {
+      display: block;
+      color: var(--text-main);
+      margin-bottom: 0.1rem;
+      font-size: 0.8rem;
+    }
+
+    .about-meta-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, #ffffff, #f9fafb);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      padding: 1rem 1.1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .about-meta-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .about-meta-list {
+      list-style: none;
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .about-meta-list li span.label {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Projects */
+    .project-card {
+      border-radius: var(--radius-xl);
+      padding: 1.3rem 1.25rem 1.2rem;
+      background: radial-gradient(circle at top left, rgba(219, 234, 254, 0.75), #ffffff);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.10);
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    .project-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .project-body {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .project-body p + p {
+      margin-top: 0.6rem;
+    }
+
+    .project-meta {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--text-muted);
+    }
+
+    .tag.accent {
+      border-color: rgba(37, 99, 235, 0.85);
+      background: rgba(219, 234, 254, 0.6);
+      color: #1d4ed8;
+    }
+
+    .flow-diagram {
+      border-radius: 18px;
+      background: radial-gradient(circle at 0% 0%, #eff6ff, #ffffff);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.85rem 0.9rem;
+      font-size: 0.77rem;
+      color: var(--text-muted);
+    }
+
+    .flow-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .flow-badge {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.4rem;
+    }
+
+    .flow-step {
+      border-radius: 0.7rem;
+      padding: 0.4rem 0.45rem;
+      background: #f9fafb;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+    }
+
+    .flow-step-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
+    }
+
+    .flow-step-body {
+      font-size: 0.72rem;
+    }
+
+    .flow-caption {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Contact */
+    .contact-card {
+      border-radius: var(--radius-xl);
+      padding: 1.1rem 1.1rem 1.2rem;
+      background: radial-gradient(circle at top left, rgba(219, 234, 254, 0.75), #ffffff);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr);
+      gap: 1.6rem;
+      align-items: center;
+    }
+
+    .contact-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      margin-top: 0.7rem;
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+
+    .contact-email span.icon {
+      width: 19px;
+      height: 19px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #eff6ff, #1d4ed8);
+      display: inline-block;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: flex-end;
+      font-size: 0.82rem;
+    }
+
+    .contact-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--text-muted);
+      transition: border-color 0.18s ease, background 0.18s ease, transform 0.15s ease, color 0.18s ease;
+    }
+
+    .contact-link-pill:hover {
+      border-color: rgba(37, 99, 235, 0.9);
+      background: rgba(219, 234, 254, 0.5);
+      color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.35);
+      padding-top: 0.7rem;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal.delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal.delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .frame {
+        padding: 1.1rem 1.1rem 2rem;
+        margin-top: calc(var(--nav-height) + 1.2rem);
+      }
+
+      .hero,
+      .about-grid,
+      .project-card,
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding: 1.25rem 1.15rem 1.5rem;
+      }
+
+      .hero-orbit {
+        order: -1;
+      }
+
+      .hero-orbit-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        padding-inline: 1rem;
+      }
+
+      .page-shell {
+        padding-inline: 1rem;
+      }
+
+      .frame {
+        margin-top: calc(var(--nav-height) + 0.8rem);
+        border-radius: 1.4rem;
+        padding-inline: 0.9rem;
+      }
+
+      .hero {
+        padding-inline: 0.9rem;
+        border-radius: 1.2rem;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: calc(var(--nav-height) + 0.25rem) 1rem auto 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.75rem;
+        border-radius: 1rem;
+        background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.98));
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 1);
+        transform-origin: top center;
+        transform: scaleY(0.8);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.16s ease, transform 0.16s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        transform: scaleY(1);
+        pointer-events: auto;
+      }
+
+      .nav-link {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .about-highlights {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .flow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .about-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .about-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .project-card,
+      .contact-card {
+        padding: 1rem 0.9rem 1rem;
+      }
+
+      .flow-diagram {
+        padding: 0.75rem 0.75rem;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-link-pill {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="nav-shell">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-mark" aria-hidden="true"></div>
+        <div>
+          <div class="nav-name">Liwei&nbsp;Chen</div>
+          <div class="nav-role">Associate Professor · UC</div>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span>Menu</span>
+          <span>☰</span>
+        </button>
+        <div class="nav-links" aria-label="Primary navigation">
+          <a href="#hero" class="nav-link">Hero</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contact" class="nav-link accent">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <div class="frame">
+      <main>
+        <!-- Hero -->
+        <section id="hero" class="hero reveal visible">
+          <div class="hero-inner">
+            <div class="hero-kicker">
+              <span class="hero-kicker-dot" aria-hidden="true"></span>
+              <span>Digital work · human decisions</span>
+            </div>
+            <h1 class="hero-title">
+              <span>Liwei&nbsp;Chen</span>
+            </h1>
+            <p class="hero-subtitle">
+              Associate Professor in Operations, Business Analytics, and Information Systems at the University of Cincinnati.
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                Explore AI workflow project
+                <span class="btn-icon" aria-hidden="true">↘</span>
+              </a>
+              <a href="#contact" class="btn btn-ghost">
+                Connect with me
+              </a>
+            </div>
+          </div>
+          <aside class="hero-orbit" aria-label="Profile photo">
+            <div class="hero-orbit-ring" aria-hidden="true"></div>
+            <div class="hero-orbit-layout">
+              <div class="hero-photo-card">
+                <div class="hero-photo-inner">
+                  <img src="Liwei_small.png" alt="Portrait of Liwei Chen" />
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="reveal">
+          <div class="section-header">
+            <span class="section-kicker">About</span>
+            <h2 class="section-title">Connecting digital work and human decisions</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                Liwei Chen is an Associate Professor in the Department of Operations, Business Analytics, and Information Systems
+                at the Carl H. Lindner College of Business, University of Cincinnati.
+              </p>
+              <p>
+                Her research examines how the design and use of digital technologies shape human interaction and influence
+                problem-solving and decision-making in both societal and business contexts. This includes work on digital
+                collaboration, data-driven decision support, and the integration of emerging technologies such as AI into
+                complex organizational settings.
+              </p>
+              <p>
+                Liwei’s work has appeared in leading journals including <em>MIS Quarterly</em>, <em>Information Systems
+                Research</em>, <em>Journal of the Association for Information Systems</em>, <em>European Journal of Information
+                Systems</em>, and <em>Journal of Medical Internet Research</em>, and has been presented at conferences such as
+                the International Conference on Information Systems, INFORMS, the Academy of Management Annual Meeting, and the
+                Annual Workshop on Health IT and Economics. She currently serves as an Associate Editor at <em>MIS Quarterly</em>.
+              </p>
+              <div class="about-actions">
+                <a href="CV_Liwei Chen_Feb2026_portfolio.pdf" class="btn btn-primary" download>
+                  Download CV (PDF)
+                  <span class="btn-icon" aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <div class="about-highlights">
+                <div class="about-highlight">
+                  <strong>Research focus</strong>
+                  Digital collaboration, AI-augmented work, socio-technical systems, and decision-making.
+                </div>
+                <div class="about-highlight">
+                  <strong>Teaching</strong>
+                  Applied AI, analytics, and information systems courses that connect theory with hands-on practice.
+                </div>
+                <div class="about-highlight">
+                  <strong>Impact</strong>
+                  Bridging rigorous research and practical insights for organizations navigating digital transformation.
+                </div>
+                <div class="about-highlight">
+                  <strong>Community</strong>
+                  Engaging with interdisciplinary teams and students to design responsible, human-centered digital solutions.
+                </div>
+              </div>
+            </div>
+            <aside class="about-meta-card">
+              <div class="about-meta-title">At a glance</div>
+              <ul class="about-meta-list">
+                <li><span class="label">Affiliation:</span> University of Cincinnati, Carl H. Lindner College of Business</li>
+                <li><span class="label">Department:</span> Operations, Business Analytics & Information Systems (OBAIS)</li>
+                <li><span class="label">Role:</span> Associate Professor, Associate Editor at <em>MIS Quarterly</em></li>
+                <li><span class="label">Keywords:</span> Digital work, collaboration, AI, analytics, socio-technical systems</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="reveal">
+          <div class="section-header">
+            <span class="section-kicker">Projects</span>
+            <h2 class="section-title">AI workflows from the classroom</h2>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Project 1 -->
+          <article class="project-card" aria-label="Lab 4 — Investment Analysis Workflow">
+            <div>
+              <div class="project-label">
+                <span>Lab 4 · Investment analysis workflow</span>
+              </div>
+              <h3 class="project-title">Lab 4 — Investment Analysis Workflow</h3>
+              <p class="project-tagline">
+                An agentic workflow in Dify that turns raw market data into structured, AI-powered investment insights for any stock.
+              </p>
+              <div class="project-body">
+                <p>
+                  This lab guides students to build a multi-step agentic workflow in Dify that connects to Yahoo Finance, retrieves
+                  live stock data, and orchestrates AI agents to interpret key indicators such as price history, volatility, and
+                  valuation ratios.
+                </p>
+                <p>
+                  The workflow generates a concise, explainable summary of a stock’s recent performance, risk profile, and
+                  long‑term outlook, helping students think critically about how AI and data can support—but not replace—human
+                  investment judgment.
+                </p>
+              </div>
+              <div class="project-meta">
+                <span class="tag accent">Dify</span>
+                <span class="tag">Yahoo Finance</span>
+                <span class="tag">Agentic AI workflow</span>
+              </div>
+            </div>
+            <aside class="flow-diagram">
+              <div class="flow-header">
+                <div class="flow-title">Workflow view</div>
+                <div class="flow-badge">Data → Insight</div>
+              </div>
+              <div class="flow-steps">
+                <div class="flow-step">
+                  <div class="flow-step-title">1. Fetch signals</div>
+                  <div class="flow-step-body">
+                    Pull current and historical metrics from Yahoo Finance for the target stock.
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-step-title">2. Interpret with AI</div>
+                  <div class="flow-step-body">
+                    Use Dify agents to analyze trends, risk, and valuation in natural language.
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-step-title">3. Synthesize view</div>
+                  <div class="flow-step-body">
+                    Produce a brief, investor‑friendly narrative that surfaces key trade‑offs and open questions.
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card" aria-label="Lab 5 — Portfolio Event Impact Analyzer" style="margin-top: 1.5rem;">
+            <div>
+              <div class="project-label">
+                <span>Lab 5 · Event impact analyzer</span>
+              </div>
+              <h3 class="project-title">Lab 5 — Portfolio Event Impact Analyzer</h3>
+              <p class="project-tagline">
+                A multi-step AI workflow that traces how global events ripple through a stock portfolio and suggests BUY/SELL/HOLD actions.
+              </p>
+              <div class="project-body">
+                <p>
+                  In this lab, students design an AI pipeline that takes a news event or scenario (for example, a policy change,
+                  supply shock, or earnings surprise) and analyzes how it might affect holdings across a portfolio.
+                </p>
+                <p>
+                  The workflow combines event understanding, sector and firm-level mapping, and impact reasoning to produce
+                  structured BUY/SELL/HOLD recommendations. Students must explicitly encode uncertainty, assumptions, and
+                  conditions under which a recommendation might change.
+                </p>
+              </div>
+              <div class="project-meta">
+                <span class="tag accent">Dify</span>
+                <span class="tag">Yahoo Finance</span>
+                <span class="tag">Scenario analysis</span>
+              </div>
+            </div>
+            <aside class="flow-diagram">
+              <div class="flow-header">
+                <div class="flow-title">Workflow view</div>
+                <div class="flow-badge">Events → Decisions</div>
+              </div>
+              <div class="flow-steps">
+                <div class="flow-step">
+                  <div class="flow-step-title">1. Parse event</div>
+                  <div class="flow-step-body">
+                    Use AI to extract affected sectors, regions, and risk drivers from an event description.
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-step-title">2. Map to holdings</div>
+                  <div class="flow-step-body">
+                    Link event drivers to specific portfolio positions using fundamentals and exposure data.
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-step-title">3. Recommend actions</div>
+                  <div class="flow-step-body">
+                    Generate BUY/SELL/HOLD suggestions with rationales and highlight where human review is critical.
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card" aria-label="Lab 6 — Gemini CLI Portfolio Analysis" style="margin-top: 1.5rem;">
+            <div>
+              <div class="project-label">
+                <span>Lab 6 · Gemini CLI portfolio analysis</span>
+              </div>
+              <h3 class="project-title">Lab 6 — Gemini CLI Portfolio Analysis</h3>
+              <p class="project-tagline">
+                A command-line workflow that uses Google Gemini to analyze portfolio data and surface investment recommendations directly in the terminal.
+              </p>
+              <div class="project-body">
+                <p>
+                  This lab brings AI-assisted analysis into a lightweight developer workflow. Students write shell commands that
+                  load portfolio data, call the Gemini CLI, and prompt the model to identify concentration risk, diversification
+                  opportunities, and holdings that may need closer attention.
+                </p>
+                <p>
+                  By working in the terminal, students learn to think of AI not only as a UI feature but as a programmable tool
+                  that can be composed with scripts, schedulers, and other automation to support ongoing investment monitoring.
+                </p>
+              </div>
+              <div class="project-meta">
+                <span class="tag accent">Gemini</span>
+                <span class="tag">CLI tools</span>
+                <span class="tag">Portfolio analytics</span>
+              </div>
+            </div>
+            <aside class="flow-diagram">
+              <div class="flow-header">
+                <div class="flow-title">Workflow view</div>
+                <div class="flow-badge">Terminal → Insight</div>
+              </div>
+              <div class="flow-steps">
+                <div class="flow-step">
+                  <div class="flow-step-title">1. Load data</div>
+                  <div class="flow-step-body">
+                    Read portfolio positions from local files or a data source and pass them into the CLI.
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-step-title">2. Analyze with Gemini</div>
+                  <div class="flow-step-body">
+                    Prompt Gemini to flag patterns, risks, and opportunities across holdings.
+                  </div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-step-title">3. Capture actions</div>
+                  <div class="flow-step-body">
+                    Output human-readable summaries that can be logged, shared, or integrated into further automation.
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </article>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="reveal">
+          <div class="section-header">
+            <span class="section-kicker">Contact</span>
+            <h2 class="section-title">Let’s talk about digital work & AI</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-text">
+              <p>
+                I welcome conversations about research collaborations, applied AI projects, and opportunities for students to
+                engage with real-world decision-making challenges.
+              </p>
+              <p>
+                Email is usually the best way to reach me. You can also find a more detailed overview of my work through my UC
+                profile and publication lists.
+              </p>
+              <a href="mailto:liwei.chen@uc.edu" class="contact-email">
+                <span class="icon" aria-hidden="true"></span>
+                <span>liwei.chen@uc.edu</span>
+              </a>
+            </div>
+            <div class="contact-links" aria-label="External profiles">
+              <a class="contact-link-pill" href="https://www.business.uc.edu/faculty-research/obais/faculty/liwei-chen.html" target="_blank" rel="noopener noreferrer">
+                <span>UC Faculty Profile</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a class="contact-link-pill" href="https://www.linkedin.com/in/liweichen/" target="_blank" rel="noopener noreferrer">
+                <span>LinkedIn</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a class="contact-link-pill" href="https://scholar.google.com/citations?hl=en&user=izVsAdUAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener noreferrer">
+                <span>Google Scholar</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+          <footer>
+            <span>© <span id="year"></span> Liwei Chen. All rights reserved.</span>
+            <span>Designed as a single-page, responsive portfolio.</span>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navLinkItems = document.querySelectorAll('.nav-link');
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+
+      navLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // Smooth scroll and offset for sticky nav
+    function smoothScrollWithOffset(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const navHeight = document.querySelector('.nav-shell').offsetHeight || 0;
+      const rect = target.getBoundingClientRect();
+      const offsetTop = rect.top + window.scrollY - navHeight - 12;
+
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (event) => {
+        const href = anchor.getAttribute('href');
+        if (href && href.length > 1) {
+          const id = href.substring(1);
+          const target = document.getElementById(id);
+          if (target) {
+            event.preventDefault();
+            smoothScrollWithOffset(id);
+          }
+        }
+      });
+    });
+
+    // Scroll reveal animations
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18
+      }
+    );
+
+    revealElements.forEach((el, index) => {
+      el.classList.add(`delay-${(index % 3) + 1}`);
+      observer.observe(el);
+    });
+
+    // Dynamic year in footer
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>
+
